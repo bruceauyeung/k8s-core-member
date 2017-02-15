@@ -100,14 +100,17 @@ func main() {
 		log.Fatalf("error: %v", err)
 	}
 	for _, u := range Users {
-		fmt.Fprintf(color.Output, "user %s is reviewer in :\n", color.RedString(u.Name))
-		for _, r := range u.ReviewerIn {
-			fmt.Printf("\t%s\n", r)
+		if len(u.ReviewerIn) > 0 {
+			fmt.Fprintf(color.Output, "user %s is reviewer in :\n", color.RedString(u.Name))
+			for _, r := range u.ReviewerIn {
+				fmt.Printf("\t%s\n", r)
+			}
 		}
-		fmt.Fprintf(color.Output, "user %s is approver in :\n", color.RedString(u.Name))
-		for _, a := range u.ApproverIn {
-			fmt.Printf("\t%s\n", a)
+		if len(u.ApproverIn) > 0 {
+			fmt.Fprintf(color.Output, "user %s is approver in :\n", color.RedString(u.Name))
+			for _, a := range u.ApproverIn {
+				fmt.Printf("\t%s\n", a)
+			}
 		}
-
 	}
 }
